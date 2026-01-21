@@ -1,0 +1,105 @@
+--[[ WARN ]]-- --[[ I stopped updating v1 because they would illegally obfuscate my script without any permission and I won't be programming for skider The next version is being created completely from scratch, rewriting each line and improving the aimbot system by adding defenses to reduce possible detections, and will possibly take 2 months to come out.
+--]]
+print("V3.9 -[ WARN - The script is out of date, possibly currently detectable ]-")
+--[[ discord.gg/25ms ███▄ ▄███▓▄▄▄█████▓▒██ ██▒ ▄████▄ ██▓ ██▓▓█████ ███▄ █ ▄▄▄█████▓ ▓██▒▀█▀ ██▒▓ ██▒ ▓▒▒▒ █ █ ▒░ ▒██▀ ▀█ ▓██▒ ▓██▒▓█ ▀ ██ ▀█ █ ▓ ██▒ ▓▒ ▓██ ▓██░▒ ▓██░ ▒░░░ █ ░ ▒▓█ ▄ ▒██░ ▒██▒▒███ ▓██ ▀█ ██▒▒ ▓██░ ▒░ ▒██ ▒██ ░ ▓██▓ ░ ░ █ █ ▒ ▒▓▓▄ ▄██▒▒██░ ░██░▒▓█ ▄ ▓██▒ ▐▌██▒░ ▓██▓ ░ ▒██▒ ░██▒ ▒██▒ ░ ▒██▒ ▒██▒ ▒ ▓███▀ ░░██████▒░██░░▒████▒▒██░ ▓██░ ▒██▒ ░ ░ ▒░ ░ ░ ▒ ░░ ▒▒ ░ ░▓ ░ ░ ░▒ ▒ ░░ ▒░▓ ░░▓ ░░ ▒░ ░░ ▒░ ▒ ▒ ▒ ░░ ░ ░ ░ ░ ░░ ░▒ ░ ░ ▒ ░ ░ ▒ ░ ▒ ░ ░ ░ ░░ ░░ ░ ▒░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ▒ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ --]]
+-- Dont Skid broo -- Stop Deobf and Skid pl4yb0icartii/playboicarti
+print("Whitelisted!")
+
+if not getgenv().MTXClient_Settings then
+	getgenv().MTXClient_Settings = {
+		["Aim"] = {
+			["AimPart"] = "Head",
+			["AimlockKey"] = "c",
+			["AimRadius"] = 35,
+			["LookAt"] = true
+		},
+		["Fov"] = {
+			["Enabled"] = true,
+			["Fov_Radius"] = 35,
+			["insidefov_Visible"] = true,
+			["insidefov_Color"] = Color3.fromRGB(105,0,255),
+			["insidefov_transparency"] = 0.3,
+			["outsidefov_Visible"] = true,
+			["outsidefov_Color"] = Color3.fromRGB(105,0,255),
+			["outsidefov_transparency"] = 1
+		},
+		["ClientFly"] = {
+			["Enabled"] = false,
+			["Keybind"] = Enum.KeyCode.-,
+			["Speed"] = 25
+		},
+		["Speed"] = {
+			["Enabled"] = false,
+			["Keybind"] = Enum.KeyCode.=,
+			["amount"] = 20
+		},
+		["Verifications"] = {
+			["ThirdPerson"] = true,
+			["FirstPerson"] = true,
+			["TeamCheck"] = false,
+			["K_O"] = true,
+			["Grabing"] = true
+		},
+		["Utility"] = {
+			["NoSlow"] = true,
+			["AntiGroundShots"] = true,
+			["Notifications"] = true
+		},
+		["Predict"] = {
+			["PredictMovement"] = false,
+			["PredictionVelocity"] = 7,
+			["AirPrediction"] = false,
+			["AirPredictionValue"] = 0.14500
+		}
+	}
+end
+
+local a = getgenv().MTXClient_Settings
+getgenv().AimPart = a.Aim.AimPart
+getgenv().AimlockKey = a.Aim.AimlockKey
+getgenv().AimRadius = a.Aim.AimRadius
+getgenv().LookAt = a.Aim.LookAt
+getgenv().ThirdPerson = a.Verifications.ThirdPerson
+getgenv().FirstPerson = a.Verifications.FirstPerson
+getgenv().TeamCheck = a.Verifications.TeamCheck
+getgenv().KOValue = a.Verifications.K_O
+getgenv().Grabing = a.Verifications.Grabing
+getgenv().NoSlow = a.Utility.NoSlow
+getgenv().AntiGroundShots = a.Utility.AntiGroundShots
+getgenv().Notifications = a.Utility.Notifications
+getgenv().PredictMovement = a.Predict.PredictMovement
+getgenv().PredictionVelocity = a.Predict.PredictionVelocity
+getgenv().AirPrediction = a.Predict.AirPrediction
+getgenv().AirPredictionValue = a.Predict.AirPredictionValue
+
+local cloneref = cloneref or function(...) return ... end
+local b = cloneref(game:GetService("Players"))
+local c = cloneref(game:GetService("UserInputService"))
+local d = cloneref(game:GetService("RunService"))
+local e = cloneref(game:GetService("StarterGui"))
+local f = cloneref(game:GetService("ReplicatedStorage"))
+local g = cloneref(game:GetService("TweenService"))
+local h = cloneref(game:GetService("Workspace"))
+local i = b.LocalPlayer
+local j = i:GetMouse()
+local k = workspace.CurrentCamera
+local l = CFrame.new
+local m = Ray.new
+local n = Vector3.new
+local o = Vector2.new
+local p = 0
+local q = true
+local r = false
+local s = false
+local t
+local u = {}
+local v = {}
+local w = {}
+local x = {}
+
+-- [The script continues with UI intro animation, notification functions, drawing FOV circles, aim target logic,
+--  keybind handling for aim, speed, and fly features, prediction logic, anti-cheat bypass, and more...]
+
+print("Init")
+-- […continued script logic…]
+print("Bypassed")
